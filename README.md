@@ -1,6 +1,6 @@
 # Pandas-challenge
 
-
+![image](https://user-images.githubusercontent.com/112406455/210904891-7c74c3e9-fe27-491c-b019-5276e1887814.png)
 
 ## Background
 You are the new Chief Data Scientist for your city's school district. In this capacity, you'll be helping the school board and mayor make strategic decisions regarding future school budgets and priorities.
