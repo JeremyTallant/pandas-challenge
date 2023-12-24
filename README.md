@@ -44,7 +44,8 @@ This project utilizes two primary data sources in CSV format, focusing on the ed
 The schools dataset provides a foundation for analyzing the distribution of schools by type, their sizes, and budget allocations. The students dataset is crucial for evaluating student performance in different subjects across various schools and grades. Together, they offer a comprehensive view of the structure of the school system and the academic achievements of its students. The analysis aims to uncover insights into the effectiveness of different school types and identify areas for improvement in student education.
 ## Implementation
 This section outlines the key steps taken in the PyCity Schools Analysis
-### Date Preparation and Merging
+### District Summary
+#### Date Preparation and Merging
 ```python
 # Import pandas library
 import pandas as pd
@@ -62,42 +63,42 @@ school_data_complete = pd.merge(student_data, school_data, how='left', on=['scho
 school_data_complete.head()
 ```
 The process begins with the `pandas` library being imported for data handling. School and student data, sourced from CSV files, are loaded into separate DataFrames. These datasets are then merged into a single DataFrame, `school_data_complete`, based on the `school_name` column. 
-### Calculating the Total Number of Unique Schools
+#### Calculating the Total Number of Unique Schools
 ```python
 # Calculate the total number of unique schools
 school_count = school_data_complete['school_name'].nunique()
 school_count
 ```
 The unique count of schools is determined using the `nunique()` method on the `school_name` column of the `school_data_complete` DataFrame.
-### Calculating the Total Number of Students
+#### Calculating the Total Number of Students
 ```python
 # Calculate the total number of students
 student_count = school_data_complete['student_name'].count()
 student_count
 ```
 The total number of students is calculated by applying the `count()` method to the `student_name` column of the `school_data_complete` DataFrame.
-### Calculating the Total Budget
+#### Calculating the Total Budget
 ```python
 # Calculate the total budget
 total_budget = school_data['budget'].sum()
 total_budget
 ```
 The overall budget for all schools is computed by summing the values in the `budget` column of the `school_data` DataFrame.
-### Calculating the Average Math Score
+#### Calculating the Average Math Score
 ```python
 # Calculate the average (mean) math score
 average_math_score = school_data_complete['math_score'].mean()
 average_math_score
 ```
 The average math score across the student body is calculated using the `mean()` method on the `math_score` column in the `school_data_complete` DataFrame.
-### Calculating the Average Reading Score
+#### Calculating the Average Reading Score
 ```python
 # Calculate the average (mean) reading score
 average_reading_score = school_data_complete['reading_score'].mean()
 average_reading_score
 ```
 The average reading score is calculated by applying the `mean()` method to the `reading_score` column in the `school_data_complete` DataFrame.
-### Calculating the Percentage of Students Passing Math
+#### Calculating the Percentage of Students Passing Math
 ```python
 # Calculate the percentage of students who passed math (math scores greater than or equal to 70)
 passing_math_count = school_data_complete[(school_data_complete["math_score"] >= 70)].count()["student_name"]
@@ -105,7 +106,7 @@ passing_math_percentage = passing_math_count / float(student_count) * 100
 passing_math_percentage
 ```
 The percentage of students passing math is calculated by identifying scores ≥ 70 in `math_score` and expressing this count as a percentage of total students.
-### Calculating the Percentage of Students Passing Reading
+#### Calculating the Percentage of Students Passing Reading
 ```python
 # Calculate the percentage of students who passed reading
 passing_reading_count = school_data_complete[(school_data_complete["reading_score"] >= 70)].count()["student_name"]
@@ -113,7 +114,7 @@ passing_reading_percentage = passing_reading_count / float(student_count) * 100
 passing_reading_percentage
 ```
 The percentage of students passing reading is calculated by identifying scores ≥ 70 in `reading_score` and expressing this count as a percentage of total students.
-### Percentage of Students Passing Both Math and Reading
+#### Percentage of Students Passing Both Math and Reading
 ```python
 # Calculate the percentage of students that passed math and reading
 passing_math_reading_count = school_data_complete[
@@ -123,7 +124,7 @@ overall_passing_rate = passing_math_reading_count /  float(student_count) * 100
 overall_passing_rate
 ```
 The percentage of students passing both math and reading is computed by identifying those who scored ≥ 70 in both subjects and then calculating this group's proportion relative to the total student count.
-### Creation of District Summary DataFrame
+#### Creation of District Summary DataFrame
 ```python
 # Create a high-level snapshot of the district's key metrics in a DataFrame
 district_summary = pd.DataFrame([{
@@ -145,3 +146,4 @@ district_summary["Total Budget"] = district_summary["Total Budget"].map("${:,.2f
 district_summary
 ```
 A high-level snapshot of the district's key metrics is compiled into a DataFrame named `district_summary`. This DataFrame includes total schools, students, budget, average scores, and passing percentages, with formatting applied to enhance readability.
+### School Summary
