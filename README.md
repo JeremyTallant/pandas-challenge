@@ -89,4 +89,11 @@ average_math_score = school_data_complete['math_score'].mean()
 average_math_score
 ```
 In this line, the average math score across all students is calculated using the `mean()` method on the `math_score` column of the `school_data_complete` DataFrame.
-
+### 
+Calculating the Average Reading Score
+```python
+# Calculate the average (mean) reading score
+average_reading_score = school_data_complete['reading_score'].mean()
+average_reading_score
+```
+This line calculates the average reading score by applying the `mean()` method to the `reading_score` column in the `school_data_complete` DataFrame.
