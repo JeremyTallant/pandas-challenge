@@ -68,5 +68,12 @@ school_count = school_data_complete['school_name'].nunique()
 school_count
 ```
 This line of code calculates the total number of unique schools in the dataset. It uses the `nunique()` method on the `school_name` column of the `school_data_complete` DataFrame, which counts the number of distinct entries in that column, representing different schools.
+### Calculating the Total Number of Students
+```python
+# Calculate the total number of students
+student_count = school_data_complete['student_name'].count()
+student_count
+```
+This line computes the total number of students in the dataset. The `count()` method is applied to the `student_name` column of the `school_data_complete` DataFrame, tallying the number of student entries.
 
 
