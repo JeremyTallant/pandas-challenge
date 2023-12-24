@@ -227,3 +227,52 @@ per_school_summary.reset_index(inplace=True)
 per_school_summary
 ```
 A DataFrame named `per_school_summary` is created, encapsulating key metrics such as school type, student counts, budgets, average scores, and passing rates. It includes formatting for budget values and resets the index for clearer presentation.
+### Highest-Performing Schools (by % Overall Passing)
+```python
+# Sort the schools by '% Overall Passing' in descending order and display the top 5 rows
+top_schools = per_school_summary.sort_values("% Overall Passing", ascending=False)
+top_schools.head()
+```
+The DataFrame `per_school_summary` is sorted by '% Overall Passing' in descending order, and the top 5 schools are displayed, showcasing the highest achievers in terms of overall student passing rates.
+### Bottom Performing Schools (By % Overall Passing)
+```python
+# Sort the schools by `% Overall Passing` in ascending order and display the top 5 rows.
+bottom_schools = per_school_summary.sort_values("% Overall Passing", ascending=True)
+bottom_schools.head()
+```
+The schools are sorted by `% Overall Passing` in ascending order to identify those with the lowest passing rates. The top 5 rows from this sorted list are displayed, highlighting the schools requiring the most attention in terms of improving student performance.
+### Math Scores by Grade
+```python
+# Separate the data by grade
+ninth_graders = school_data_complete[(school_data_complete["grade"] == "9th")]
+tenth_graders = school_data_complete[(school_data_complete["grade"] == "10th")]
+eleventh_graders = school_data_complete[(school_data_complete["grade"] == "11th")]
+twelfth_graders = school_data_complete[(school_data_complete["grade"] == "12th")]
+
+# Group by "school_name" and take the mean of each.
+ninth_graders_scores = ninth_graders.groupby(["school_name"]).mean(numeric_only=True)
+tenth_graders_scores = tenth_graders.groupby(["school_name"]).mean(numeric_only=True)
+eleventh_graders_scores = eleventh_graders.groupby(["school_name"]).mean(numeric_only=True)
+twelfth_graders_scores = twelfth_graders.groupby(["school_name"]).mean(numeric_only=True)
+
+# Select only the `math_score`.
+ninth_grade_math_scores = ninth_graders_scores["math_score"]
+tenth_grade_math_scores = tenth_graders_scores["math_score"]
+eleventh_grade_math_scores = eleventh_graders_scores.mean()["math_score"]
+twelfth_grade_math_scores = twelfth_graders_scores["math_score"]
+
+# Combine each of the scores above into single DataFrame called `math_scores_by_grade`
+math_scores_by_grade =pd.DataFrame({
+    "9th":ninth_grade_math_scores,
+    "10th":tenth_grade_math_scores,
+    "11th":eleventh_grade_math_scores,
+    "12th":twelfth_grade_math_scores
+})
+
+# Minor data wrangling
+math_scores_by_grade.index.name = None
+
+#Display the DataFrame
+math_scores_by_grade
+```
+Math scores are segmented by grade levels: 9th, 10th, 11th, and 12th. The data is separated for each grade, grouped by school, and the average math scores are calculated. These scores are then consolidated into a DataFrame, `math_scores_by_grade`, providing a clear comparison of math achievement across different grades in each school. Minor data wrangling is applied to refine the DataFrame's presentation.
