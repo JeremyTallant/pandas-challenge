@@ -82,4 +82,11 @@ total_budget = school_data['budget'].sum()
 total_budget
 ```
 This code snippet calculates the total budget across all schools. It utilizes the `sum()` method on the `budget` column of the `school_data` DataFrame, which adds up the budget allocated to each school.
+### Calculating the Average Math Score
+```python
+# Calculate the average (mean) math score
+average_math_score = school_data_complete['math_score'].mean()
+average_math_score
+```
+In this line, the average math score across all students is calculated using the `mean()` method on the `math_score` column of the `school_data_complete` DataFrame.
 
