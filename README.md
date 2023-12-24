@@ -105,3 +105,43 @@ passing_math_percentage = passing_math_count / float(student_count) * 100
 passing_math_percentage
 ```
 The percentage of students passing math is calculated by identifying scores ≥ 70 in `math_score` and expressing this count as a percentage of total students.
+### Calculating the Percentage of Students Passing Reading
+```python
+# Calculate the percentage of students who passed reading
+passing_reading_count = school_data_complete[(school_data_complete["reading_score"] >= 70)].count()["student_name"]
+passing_reading_percentage = passing_reading_count / float(student_count) * 100
+passing_reading_percentage
+```
+The percentage of students passing reading is calculated by identifying scores ≥ 70 in `reading_score` and expressing this count as a percentage of total students.
+### Percentage of Students Passing Both Math and Reading
+```python
+# Calculate the percentage of students that passed math and reading
+passing_math_reading_count = school_data_complete[
+    (school_data_complete["math_score"] >= 70) & (school_data_complete["reading_score"] >= 70)
+].count()["student_name"]
+overall_passing_rate = passing_math_reading_count /  float(student_count) * 100
+overall_passing_rate
+```
+The percentage of students passing both math and reading is computed by identifying those who scored ≥ 70 in both subjects and then calculating this group's proportion relative to the total student count.
+### Creation of District Summary DataFrame
+``python
+# Create a high-level snapshot of the district's key metrics in a DataFrame
+district_summary = pd.DataFrame([{
+    "Total Shools": school_count,
+    "Total Students": student_count,
+    "Total Budget": total_budget,
+    "Average Math Score": average_math_score,
+    "Average Reading Score": average_reading_score,
+    "% Passing Math": passing_math_percentage,
+    "% Passing Reading": passing_reading_percentage,
+    "% Overall Passing": overall_passing_rate
+}])
+
+# Formatting
+district_summary["Total Students"] = district_summary["Total Students"].map("{:,}".format)
+district_summary["Total Budget"] = district_summary["Total Budget"].map("${:,.2f}".format)
+
+# Display the DataFrame
+district_summary
+```
+A high-level snapshot of the district's key metrics is compiled into a DataFrame named `district_summary`. This DataFrame includes total schools, students, budget, average scores, and passing percentages, with formatting applied to enhance readability.
