@@ -60,42 +60,42 @@ student_data = pd.read_csv(student_data_file)
 school_data_complete = pd.merge(student_data, school_data, how='left', on=['school_name', 'school_name'])
 school_data_complete.head()
 ```
-In this section, the script imports the `pandas` library for data handling. It then loads school and student data from CSV files into DataFrames and merges them into a single DataFrame, `school_data_complete`. This merge is based on the `school_name` column, combining the datasets for comprehensive analysis.
+The process begins with the `pandas` library being imported for data handling. School and student data, sourced from CSV files, are loaded into separate DataFrames. These datasets are then merged into a single DataFrame, `school_data_complete`, based on the `school_name` column. 
 ### Calculating the Total Number of Unique Schools
 ```python
 # Calculate the total number of unique schools
 school_count = school_data_complete['school_name'].nunique()
 school_count
 ```
-This line of code calculates the total number of unique schools in the dataset. It uses the `nunique()` method on the `school_name` column of the `school_data_complete` DataFrame, which counts the number of distinct entries in that column, representing different schools.
+The unique count of schools is determined using the `nunique()` method on the `school_name` column of the `school_data_complete` DataFrame.
 ### Calculating the Total Number of Students
 ```python
 # Calculate the total number of students
 student_count = school_data_complete['student_name'].count()
 student_count
 ```
-This line computes the total number of students in the dataset. The `count()` method is applied to the `student_name` column of the `school_data_complete` DataFrame, tallying the number of student entries.
+The total number of students is calculated by applying the `count()` method to the `student_name` column of the `school_data_complete` DataFrame.
 ### Calculating the Total Budget
 ```python
 # Calculate the total budget
 total_budget = school_data['budget'].sum()
 total_budget
 ```
-This code snippet calculates the total budget across all schools. It utilizes the `sum()` method on the `budget` column of the `school_data` DataFrame, which adds up the budget allocated to each school.
+The overall budget for all schools is computed by summing the values in the `budget` column of the `school_data` DataFrame.
 ### Calculating the Average Math Score
 ```python
 # Calculate the average (mean) math score
 average_math_score = school_data_complete['math_score'].mean()
 average_math_score
 ```
-In this line, the average math score across all students is calculated using the `mean()` method on the `math_score` column of the `school_data_complete` DataFrame.
+The average math score across the student body is calculated using the `mean()` method on the `math_score` column in the `school_data_complete` DataFrame.
 ### Calculating the Average Reading Score
 ```python
 # Calculate the average (mean) reading score
 average_reading_score = school_data_complete['reading_score'].mean()
 average_reading_score
 ```
-This line calculates the average reading score by applying the `mean()` method to the `reading_score` column in the `school_data_complete` DataFrame.
+The average reading score is calculated by applying the `mean()` method to the `reading_score` column in the `school_data_complete` DataFrame.
 ### Calculating the Percentage of Students Passing Math
 ```python
 # Calculate the percentage of students who passed math (math scores greater than or equal to 70)
@@ -103,4 +103,4 @@ passing_math_count = school_data_complete[(school_data_complete["math_score"] >=
 passing_math_percentage = passing_math_count / float(student_count) * 100
 passing_math_percentage
 ```
-This code first identifies the number of students who passed math (scoring 70 or higher) and then calculates the percentage of these students relative to the total student count. The `count()` method is used to tally students meeting the passing criteria in the `math_score` column.
+The percentage of students passing math is calculated by identifying scores ≥ 70 in `math_score` and expressing this count as a percentage of total students.
