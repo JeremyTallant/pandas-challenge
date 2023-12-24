@@ -124,7 +124,7 @@ overall_passing_rate
 ```
 The percentage of students passing both math and reading is computed by identifying those who scored ≥ 70 in both subjects and then calculating this group's proportion relative to the total student count.
 ### Creation of District Summary DataFrame
-``python
+```python
 # Create a high-level snapshot of the district's key metrics in a DataFrame
 district_summary = pd.DataFrame([{
     "Total Shools": school_count,
