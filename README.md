@@ -42,8 +42,25 @@ This project utilizes two primary data sources in CSV format, focusing on the ed
 | math_score   | Math score of the student.                     |
 
 The schools dataset provides a foundation for analyzing the distribution of schools by type, their sizes, and budget allocations. The students dataset is crucial for evaluating student performance in different subjects across various schools and grades. Together, they offer a comprehensive view of the structure of the school system and the academic achievements of its students. The analysis aims to uncover insights into the effectiveness of different school types and identify areas for improvement in student education.
+## Implementation
+### Date Preparation and Merging
+```python
+# Import pandas library
+import pandas as pd
 
+# File paths for school and student data
+school_data_file = '../Resources/schools_complete.csv'
+student_data_file = '../Resources/students_complete.csv'
 
+# Load files into DataFrames
+school_data = pd.read_csv(school_data_file)
+student_data = pd.read_csv(student_data_file)
+
+# Merge student and school data on 'school_name' and display results
+school_data_complete = pd.merge(student_data, school_data, how='left', on=['school_name', 'school_name'])
+school_data_complete.head()
+```
+In this section, the script imports the `pandas` library for data handling. It then loads school and student data from CSV files into DataFrames and merges them into a single DataFrame, `school_data_complete`. This merge is based on the `school_name` column, combining the datasets for comprehensive analysis.
 
 
 
