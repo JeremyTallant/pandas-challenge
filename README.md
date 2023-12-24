@@ -299,3 +299,17 @@ reading_scores_by_grade.index.name = None
 reading_scores_by_grade
 ```
 The analysis focuses on reading scores for each grade level. After extracting reading scores for 9th, 10th, 11th, and 12th graders, these are combined into a DataFrame named `reading_scores_by_grade`. This DataFrame offers a clear view of how reading performance varies across different grades within schools, facilitated by some minor data adjustments for clarity in presentation.
+### Scores by School Spending
+#### Established Spending Bins
+```python
+# Establish the bins 
+spending_bins = [0, 585, 630, 645, 680]
+labels = ["<$585", "$585-630", "$630-645", "$645-680"]
+```
+Spending bins are defined for categorizing schools by per-student budget, along with corresponding labels for each range.
+#### Creating a Copy for School Spending Analysis
+```python
+# Create a copy of the school summary since it has the "Per Student Budget" 
+school_spending_df = per_school_summary.copy()
+```
+A copy of the `per_school_summary` DataFrame is created, named `school_spending_df`, to facilitate analysis based on the "Per Student Budget".
