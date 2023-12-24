@@ -187,3 +187,43 @@ Schools where students have achieved math scores of 70 or higher are identified 
 school_passing_reading = school_data_complete[school_data_complete["reading_score"] >= 70]
 ```
 Schools with students achieving reading scores of 70 or higher are determined by filtering `school_data_complete` based on `reading_score`.
+#### Identifying Schools Passing Both Math and Reading
+```python
+# Calculate the schools that passed both math and reading with scores of 70 or higher
+passing_math_and_reading = school_data_complete[
+    (school_data_complete["reading_score"] >= 70) & (school_data_complete["math_score"] >= 70)
+]
+```
+Schools where students passed both math and reading with scores of 70 or higher are identified by applying a combined filter to `school_data_complete` on both `math_score` and `reading_score`.
+#### Calculating Passing Rates for Each School
+```python
+# Calculate the passing rates
+per_school_passing_math = school_passing_math.groupby(["school_name"]).count()["student_name"] / per_school_counts * 100
+per_school_passing_reading = school_passing_reading.groupby(["school_name"]).count()["student_name"] / per_school_counts * 100
+overall_passing_rate = passing_math_and_reading.groupby(["school_name"]).count()["student_name"] / per_school_counts * 100
+```
+The passing rates for math and reading are computed by dividing the count of students who passed in each subject by the total student count per school, then multiplying by 100. Similarly, the overall passing rate is determined by the proportion of students passing both math and reading.
+#### Creating the School Summary DataFrame
+```python
+# Create a DataFrame called `per_school_summary` with columns for the calculations above.
+per_school_summary = pd.DataFrame({
+    "School Type": school_types,
+    "Total Students": per_school_counts,
+    "Total School Budget": per_school_budget,
+    "Per Student Budget": per_school_capita,
+    "Average Math Score": per_school_math,
+    "Average Reading Score": per_school_reading,
+    "% Passing Math": per_school_passing_math,
+    "% Passing Reading": per_school_passing_reading,
+    "% Overall Passing": overall_passing_rate
+})
+
+# Formatting
+per_school_summary["Total School Budget"] = per_school_summary["Total School Budget"].map("${:,.2f}".format)
+per_school_summary["Per Student Budget"] = per_school_summary["Per Student Budget"].map("${:,.2f}".format)
+
+# Reset index and display the DataFrame
+per_school_summary.reset_index(inplace=True)
+per_school_summary
+```
+A DataFrame named `per_school_summary` is created, encapsulating key metrics such as school type, student counts, budgets, average scores, and passing rates. It includes formatting for budget values and resets the index for clearer presentation.
