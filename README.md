@@ -43,6 +43,7 @@ This project utilizes two primary data sources in CSV format, focusing on the ed
 
 The schools dataset provides a foundation for analyzing the distribution of schools by type, their sizes, and budget allocations. The students dataset is crucial for evaluating student performance in different subjects across various schools and grades. Together, they offer a comprehensive view of the structure of the school system and the academic achievements of its students. The analysis aims to uncover insights into the effectiveness of different school types and identify areas for improvement in student education.
 ## Implementation
+This section outlines the key steps taken in the PyCity Schools Analysis
 ### Date Preparation and Merging
 ```python
 # Import pandas library
