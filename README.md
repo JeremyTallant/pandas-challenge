@@ -272,7 +272,30 @@ math_scores_by_grade =pd.DataFrame({
 # Minor data wrangling
 math_scores_by_grade.index.name = None
 
-#Display the DataFrame
+# Display the DataFrame
 math_scores_by_grade
 ```
 Math scores are segmented by grade levels: 9th, 10th, 11th, and 12th. The data is separated for each grade, grouped by school, and the average math scores are calculated. These scores are then consolidated into a DataFrame, `math_scores_by_grade`, providing a clear comparison of math achievement across different grades in each school. Minor data wrangling is applied to refine the DataFrame's presentation.
+### Reading Score by Grade
+```python
+# Select only the `reading_score`.
+ninth_grade_reading_scores = ninth_graders_scores["reading_score"]
+tenth_grade_reading_scores = tenth_graders_scores["reading_score"]
+eleventh_grade_reading_scores = eleventh_graders_scores["reading_score"]
+twelfth_grade_reading_scores = twelfth_graders_scores["reading_score"]
+
+# Combine each of the scores above into single DataFrame called `reading_scores_by_grade`
+reading_scores_by_grade =pd.DataFrame({
+    "9th":ninth_grade_reading_scores,
+    "10th":tenth_grade_reading_scores,
+    "11th":eleventh_grade_reading_scores,
+    "12th":twelfth_grade_reading_scores
+})
+
+# Minor data wrangling
+reading_scores_by_grade.index.name = None
+
+# Display the DataFrame
+reading_scores_by_grade
+```
+The analysis focuses on reading scores for each grade level. After extracting reading scores for 9th, 10th, 11th, and 12th graders, these are combined into a DataFrame named `reading_scores_by_grade`. This DataFrame offers a clear view of how reading performance varies across different grades within schools, facilitated by some minor data adjustments for clarity in presentation.
