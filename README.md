@@ -97,3 +97,11 @@ average_reading_score = school_data_complete['reading_score'].mean()
 average_reading_score
 ```
 This line calculates the average reading score by applying the `mean()` method to the `reading_score` column in the `school_data_complete` DataFrame.
+### Calculating the Percentage of Students Passing Math
+```python
+# Calculate the percentage of students who passed math (math scores greater than or equal to 70)
+passing_math_count = school_data_complete[(school_data_complete["math_score"] >= 70)].count()["student_name"]
+passing_math_percentage = passing_math_count / float(student_count) * 100
+passing_math_percentage
+```
+This code first identifies the number of students who passed math (scoring 70 or higher) and then calculates the percentage of these students relative to the total student count. The `count()` method is used to tally students meeting the passing criteria in the `math_score` column.
