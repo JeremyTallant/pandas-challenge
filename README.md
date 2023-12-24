@@ -147,3 +147,24 @@ district_summary
 ```
 A high-level snapshot of the district's key metrics is compiled into a DataFrame named `district_summary`. This DataFrame includes total schools, students, budget, average scores, and passing percentages, with formatting applied to enhance readability.
 ### School Summary
+#### Selecting School Types
+```python
+# Select the school type
+school_types = school_data.set_index(["school_name"])["type"]
+school_types
+```
+The script extracts the types of each school, setting `school_name` as the index and selecting the `type` column from the `school_data` DataFrame.
+#### Calculating Total Student Count per School
+```python
+# Calculate the total student count
+per_school_counts = school_data_complete.groupby('school_name')['student_name'].count()
+per_school_counts
+```
+The total number of students for each school is calculated by grouping `school_data_complete` by `school_name` and counting `student_name` entries.
+#### Calculating School Budgets and Per Capita Spending
+```python
+# Calculate the total school budget and per capita spending
+per_school_budget = school_data_complete.groupby(["school_name"]).mean(numeric_only=True)["budget"]
+per_school_capita = per_school_budget / per_school_counts
+```
+The script computes each school's total budget and per capita spending by grouping `school_data_complete` by `school_name`, averaging the `budget`, and then dividing by the student count per school.
