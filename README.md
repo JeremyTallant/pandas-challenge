@@ -313,3 +313,57 @@ Spending bins are defined for categorizing schools by per-student budget, along 
 school_spending_df = per_school_summary.copy()
 ```
 A copy of the `per_school_summary` DataFrame is created, named `school_spending_df`, to facilitate analysis based on the "Per Student Budget".
+#### Converting 'Per Student Budget' to Numeric Format
+```python
+# Convert 'Per Student Budget' from string to float by removing dollar signs and commas, then casting to float
+school_spending_df['Per Student Budget'] = school_spending_df['Per Student Budget'].replace('[\$,]', '', regex=True).astype(float)
+```
+'Per Student Budget' in `school_spending_df` is converted from a string to a float by removing dollar signs and commas.
+#### Categorizing Schools by Spending Ranges
+```python
+# Use `pd.cut` to categorize spending based on the bins.
+school_spending_df["Spending Ranges (Per Student)"] = pd.cut(school_spending_df['Per Student Budget'], spending_bins,labels=labels, right=False)
+school_spending_df
+```
+'Spending Ranges (Per Student)' is assigned to `school_spending_df` using `pd.cut` to categorize 'Per Student Budget' into the defined spending bins and labels.
+#### Calculating Averages by Spending Range
+```python
+#  Calculate averages for the desired columns. 
+spending_math_scores = school_spending_df.groupby(["Spending Ranges (Per Student)"]).mean(numeric_only=True)["Average Math Score"]
+spending_reading_scores = school_spending_df.groupby(["Spending Ranges (Per Student)"]).mean(numeric_only=True)["Average Reading Score"]
+spending_passing_math = school_spending_df.groupby(["Spending Ranges (Per Student)"]).mean(numeric_only=True)["% Passing Math"]
+spending_passing_reading = school_spending_df.groupby(["Spending Ranges (Per Student)"]).mean(numeric_only=True)["% Passing Reading"]
+overall_passing_spending = school_spending_df.groupby(["Spending Ranges (Per Student)"]).mean(numeric_only=True)["% Overall Passing"]
+```
+Averages for 'Average Math Score', 'Average Reading Score', '% Passing Math', '% Passing Reading', and '% Overall Passing' are calculated within each spending range in `school_spending_df`.
+#### Assembling Spending Summary DataFrame
+```python
+# Assemble into DataFrame
+spending_summary = pd.DataFrame({
+    "Average Math Score": spending_math_scores,
+    "Average Reading Score": spending_reading_scores,
+    "% Passing Math": spending_passing_math,
+    "% Passing Reading": spending_passing_reading,
+    "% Overall Passing": overall_passing_spending
+})
+
+# Display results
+spending_summary
+```
+A new DataFrame, `spending_summary`, is created, compiling the calculated averages for math and reading scores, and passing percentages across different spending ranges.
+### Scores by School Size
+#### Setting School Size Bins
+```python
+# Establish the bins.
+size_bins = [0, 1000, 2000, 5000]
+labels = ["Small (<1000)", "Medium (1000-2000)", "Large (2000-5000)"]
+```
+Bins and corresponding labels are defined to categorize schools based on their student population sizes.
+#### Categorizing Schools by Size
+```python
+# Categorize the spending based on the bins
+# Use `pd.cut` on the "Total Students" column of the `per_school_summary` DataFrame.
+per_school_summary["School Size"] = pd.cut(per_school_summary["Total Students"], size_bins, labels=labels)
+per_school_summary
+``` 
+School sizes are categorized in the `per_school_summary` DataFrame using `pd.cut` on the "Total Students" column, based on the predefined size bins.
