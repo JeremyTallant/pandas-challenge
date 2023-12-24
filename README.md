@@ -61,6 +61,12 @@ school_data_complete = pd.merge(student_data, school_data, how='left', on=['scho
 school_data_complete.head()
 ```
 In this section, the script imports the `pandas` library for data handling. It then loads school and student data from CSV files into DataFrames and merges them into a single DataFrame, `school_data_complete`. This merge is based on the `school_name` column, combining the datasets for comprehensive analysis.
-
+### Calculating the Total Number of Unique Schools
+```python
+# Calculate the total number of unique schools
+school_count = school_data_complete['school_name'].nunique()
+school_count
+```
+This line of code calculates the total number of unique schools in the dataset. It uses the `nunique()` method on the `school_name` column of the `school_data_complete` DataFrame, which counts the number of distinct entries in that column, representing different schools.
 
 
