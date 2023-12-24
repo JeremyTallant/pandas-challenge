@@ -75,5 +75,11 @@ student_count = school_data_complete['student_name'].count()
 student_count
 ```
 This line computes the total number of students in the dataset. The `count()` method is applied to the `student_name` column of the `school_data_complete` DataFrame, tallying the number of student entries.
-
+### Calculating the Total Budget
+```python
+# Calculate the total budget
+total_budget = school_data['budget'].sum()
+total_budget
+```
+This code snippet calculates the total budget across all schools. It utilizes the `sum()` method on the `budget` column of the `school_data` DataFrame, which adds up the budget allocated to each school.
 
