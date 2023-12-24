@@ -168,3 +168,22 @@ per_school_budget = school_data_complete.groupby(["school_name"]).mean(numeric_o
 per_school_capita = per_school_budget / per_school_counts
 ```
 The script computes each school's total budget and per capita spending by grouping `school_data_complete` by `school_name`, averaging the `budget`, and then dividing by the student count per school.
+#### Calculating Average Test Scores per School
+```python
+# Calculate the average test scores
+per_school_math = school_data_complete.groupby('school_name')['math_score'].mean()
+per_school_reading = school_data_complete.groupby('school_name')['reading_score'].mean()
+```
+The average math and reading scores for each school are calculated by grouping `school_data_complete` by `school_name` and computing the mean of `math_score` and `reading_score`, respectively.
+#### Schools with Math Scores of 70 or Higher
+```python
+# Calculate the number of schools with math scores of 70 or higher
+school_passing_math = school_data_complete[school_data_complete["math_score"] >= 70]
+```
+Schools where students have achieved math scores of 70 or higher are identified from `school_data_complete` using a conditional filter on `math_score`.
+#### Schools with Reading Scores of 70 or Higher
+```python
+# Calculate the number of schools with reading scores of 70 or higher
+school_passing_reading = school_data_complete[school_data_complete["reading_score"] >= 70]
+```
+Schools with students achieving reading scores of 70 or higher are determined by filtering `school_data_complete` based on `reading_score`.
