@@ -4,6 +4,13 @@
 
 ## Background
 As the new Chief Data Scientist for the city's school district, I am tasked with analyzing district-wide standardized test results to aid strategic decision-making regarding school budgets and priorities. Utilizing Pandas and Jupyter Notebook, my assignment is to create detailed reports based on every student's math and reading scores, along with school information. The objective is to aggregate this data effectively to reveal clear trends in school performance. This analysis will help in creating a comprehensive snapshot of the district's educational landscape, encompassing various key metrics like average scores, passing percentages, and budget allocations. The insights gained will be pivotal in guiding the school board and mayor's decisions, ensuring resource allocation aligns with the areas of greatest need and impact.
+## Table of Contents
+- [Objective](#objective)
+- [Data](#data)
+- [Implementation](#implementation)
+- [Insights](#insights)
+- [Recommendations](#recommendations)
+
 ## Objective
 The primary goal of this project is to utilize advanced data manipulation techniques with Pandas and Jupyter Notebook to conduct a thorough analysis of standardized test results across the school district. The key objectives are outlined as follows:
 1. **District Summary**: To compute and present a high-level snapshot of the district's key educational metrics, including the total number of schools, students, overall budget, average scores, and percentages of students passing math, reading, and both subjects.
